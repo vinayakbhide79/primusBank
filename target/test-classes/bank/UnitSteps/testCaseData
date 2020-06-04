@@ -1,0 +1,60 @@
+static ChromeDriver driver = null;
+	
+	public static void browserlaunch(String browserproperty, String exepath)
+	{String browser = browserproperty;
+	String exe = exepath;
+	System.setProperty(browser, exe);
+	driver = new ChromeDriver();
+	driver.manage().window().maximize();}
+	
+	public static void websitelaunch(String url)
+	{String urlsite = url;
+	driver.get(urlsite);
+	}
+	
+	public static void username(String uname)
+	{String name = uname;
+	driver.findElementByXPath("//input[@id='txtuId']").sendKeys(name);
+	}
+	
+	public static void password(String upass)
+	{String word = upass;
+	driver.findElementByXPath("//input[@id='txtPword']").sendKeys(word);
+	}
+	
+	public static void loginbutton(String login)
+	{String logbutton = login;
+	driver.findElementByXPath(logbutton).click();
+	}
+	
+	public static void clickBranches(String Branches)
+	{String BranchesButton = Branches;
+	driver.findElementByXPath(BranchesButton).click();
+	}
+	
+	public static void SelectCountry(String SeCountry)
+	{String Country = SeCountry;
+	Select sel = new Select(driver.findElementByXPath(Country));
+	sel.selectByVisibleText("INDIA");
+	}
+	
+	public static void SelectState(String SeState)
+	{String State = SeState;
+	Select sel1 = new Select(driver.findElementByXPath(State));
+	sel1.selectByVisibleText("MAHARASTRA");
+	}
+	
+	
+	public static void main(String[] args) 
+	{
+		browserlaunch("webdriver.chrome.driver","C:\\Users\\vinay\\OneDrive\\Desktop\\Project\\primusBank\\src\\test\\resources\\DRIVERS\\chromedriver.exe");
+		websitelaunch("http://primusbank.qedgetech.com/");
+		username("Admin");
+		password("Admin");
+		loginbutton("//input[@id='login']");
+		clickBranches("//*[@src='images/Branches_but.jpg']");
+		SelectCountry("//select[@id='lst_countryS']");
+		SelectState("//select[@id='lst_stateS']");
+	}
+	
+	
